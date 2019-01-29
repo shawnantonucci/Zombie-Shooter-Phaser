@@ -9,6 +9,10 @@ export class MenuScene extends Phaser.Scene {
   }
   init() {}
 
+  preload() {
+    this.load.audio('music', 'assets/audio/zombie-main-music.ogg');
+  }
+
   create() {
     this.add
       .image(

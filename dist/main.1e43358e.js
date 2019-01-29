@@ -357,6 +357,11 @@ function (_Phaser$Scene) {
     key: "init",
     value: function init() {}
   }, {
+    key: "preload",
+    value: function preload() {
+      this.load.audio('music', 'assets/audio/zombie-main-music.ogg');
+    }
+  }, {
     key: "create",
     value: function create() {
       var _this = this;
@@ -807,7 +812,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "43229" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63936" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

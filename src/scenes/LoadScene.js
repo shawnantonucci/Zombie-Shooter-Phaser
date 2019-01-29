@@ -78,6 +78,7 @@ export class LoadScene extends Phaser.Scene {
         this.game.renderer.width * percent,
         50
       );
+      
     });
 
     this.load.on("complete", () => {

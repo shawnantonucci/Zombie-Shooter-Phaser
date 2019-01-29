@@ -1,0 +1,22 @@
+export const CST = {
+    SCENES: {
+        LOAD: "LOAD",
+        MENU: "MENU",
+        PLAY: "PLAY",
+        COMINGSOON: "COMINGSOON"
+    },
+    IMAGE: {
+        LOGO: "zombie-logo.png",
+        OPTIONS: "options_button.png",
+        PLAY: "play_button.png",
+        TITLE: "ZombieInvasionBg1.png",
+        COMING: "night-dark-halloween-horror.jpg"
+    },
+    AUDIO: {
+        TITLE: "zombie-main-music.ogg"
+    },
+    SPRITE: {
+        CAT: "cat.png",
+        MENUICON: "redIcon.png"
+    }
+}

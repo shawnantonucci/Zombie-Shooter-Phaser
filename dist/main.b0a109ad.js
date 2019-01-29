@@ -120,7 +120,7 @@ exports.CST = {
     LOGO: "logo.png",
     OPTIONS: "options_button.png",
     PLAY: "play_button.png",
-    TITLE: "Ruined-City.png"
+    TITLE: "ZombieInvasionBg1.png"
   },
   AUDIO: {
     TITLE: "zombie-main-music.ogg"
@@ -312,7 +312,7 @@ function (_super) {
     var _this = this;
 
     this.add.image(this.game.renderer.width / 2, this.game.renderer.height * 0.2, CST_1.CST.IMAGE.LOGO).setDepth(1);
-    this.add.image(0, -200, CST_1.CST.IMAGE.TITLE).setOrigin(0).setDepth(0).setScale(2);
+    this.add.image(0, 0, CST_1.CST.IMAGE.TITLE).setOrigin(0).setDepth(0);
     var playButton = this.add.image(this.game.renderer.width / 2, this.game.renderer.height / 2, CST_1.CST.IMAGE.PLAY).setDepth(1);
     var optionsButton = this.add.image(this.game.renderer.width / 2, this.game.renderer.height / 2 + 100, CST_1.CST.IMAGE.OPTIONS).setDepth(1); //create sprites (if using pixel art, remove sharpen)
 
@@ -320,7 +320,7 @@ function (_super) {
     hoverSprite.setScale(2);
     hoverSprite.setVisible(false); //create audio, disable pauseonblur
 
-    this.sound.pauseOnBlur = false;
+    this.sound.pauseOnBlur = true;
     this.sound.play(CST_1.CST.AUDIO.TITLE, {
       loop: true
     }); //create animation
@@ -710,7 +710,8 @@ var MenuScene_1 = require("./scenes/MenuScene");
 
 var PlayScene_1 = require("./scenes/PlayScene");
 
-var game = new Phaser.Game({
+var config = {
+  type: Phaser.Auto,
   width: 800,
   height: 600,
   scene: [LoadScene_1.LoadScene, MenuScene_1.MenuScene, PlayScene_1.PlayScene],
@@ -723,7 +724,8 @@ var game = new Phaser.Game({
       debug: false
     }
   }
-});
+};
+var game = new Phaser.Game(config);
 },{"./scenes/LoadScene":"src/scenes/LoadScene.ts","./scenes/MenuScene":"src/scenes/MenuScene.ts","./scenes/PlayScene":"src/scenes/PlayScene.ts"}],"C:/Users/shawn/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';

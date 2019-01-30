@@ -9,7 +9,7 @@ export const CST = {
         LOGO: "zombie-logo.png",
         OPTIONS: "options_button.png",
         PLAY: "play_button.png",
-        TITLE: "ZombieInvasionBg1.png",
+        TITLE: "title_bg.jpg",
         COMING: "night-dark-halloween-horror.jpg"
     },
     AUDIO: {
@@ -17,6 +17,6 @@ export const CST = {
     },
     SPRITE: {
         CAT: "cat.png",
-        MENUICON: "redIcon.png"
+        MENUICON: "greenBio.png"
     }
 }

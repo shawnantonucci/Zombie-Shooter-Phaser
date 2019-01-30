@@ -11,6 +11,7 @@ export class MenuScene extends Phaser.Scene {
 
   preload() {
     this.load.audio('music', 'assets/audio/zombie-main-music.ogg');
+    // this.load.image('cat', 'assets/sprite/cat.png');
   }
 
   create() {
@@ -20,17 +21,19 @@ export class MenuScene extends Phaser.Scene {
         this.game.renderer.height * 0.3,
         CST.IMAGE.LOGO
       )
+      .setScale(1.1)
       .setDepth(1);
 
     this.add
       .image(0, 0, CST.IMAGE.TITLE)
       .setOrigin(0)
+      .setScale(.4)
       .setDepth(0);
 
     let playButton = this.add
       .image(
         this.game.renderer.width / 2,
-        this.game.renderer.height / 2,
+        this.game.renderer.height / 2 + 66,
         CST.IMAGE.PLAY
       )
       .setDepth(1);
@@ -38,7 +41,7 @@ export class MenuScene extends Phaser.Scene {
     let optionsButton = this.add
       .image(
         this.game.renderer.width / 2,
-        this.game.renderer.height / 2 + 80,
+        this.game.renderer.height / 2 + 115,
         CST.IMAGE.OPTIONS
       )
       .setDepth(1);
@@ -70,6 +73,21 @@ export class MenuScene extends Phaser.Scene {
     //   })
     // });
 
+    //tweens
+
+  //   var image = this.add.image(-50, 385, 'cat');
+
+  //   this.tweens.add({
+  //     targets: image,
+  //     x: 850,
+  //     duration: 15500,
+  //     ease: function (t) {
+  //         return Math.pow(Math.sin(t * 3), 3);
+  //     },
+  //     delay: 1000,
+  //     repeat: -1
+  // });
+
     //make image buttons interactive
 
     /*    
@@ -85,7 +103,7 @@ export class MenuScene extends Phaser.Scene {
     playButton.on("pointerover", () => {
       hoverSprite.setVisible(true);
       //hoverSprite.play("walk");
-      hoverSprite.x = playButton.x - playButton.width + 50;
+      hoverSprite.x = playButton.x - playButton.width + 30;
       hoverSprite.y = playButton.y;
     });
 

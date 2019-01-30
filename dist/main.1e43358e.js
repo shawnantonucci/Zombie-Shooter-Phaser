@@ -122,7 +122,7 @@ var CST = {
     LOGO: "zombie-logo.png",
     OPTIONS: "options_button.png",
     PLAY: "play_button.png",
-    TITLE: "ZombieInvasionBg1.png",
+    TITLE: "title_bg.jpg",
     COMING: "night-dark-halloween-horror.jpg"
   },
   AUDIO: {
@@ -130,7 +130,7 @@ var CST = {
   },
   SPRITE: {
     CAT: "cat.png",
-    MENUICON: "redIcon.png"
+    MENUICON: "greenBio.png"
   }
 };
 exports.CST = CST;
@@ -359,17 +359,17 @@ function (_Phaser$Scene) {
   }, {
     key: "preload",
     value: function preload() {
-      this.load.audio('music', 'assets/audio/zombie-main-music.ogg');
+      this.load.audio('music', 'assets/audio/zombie-main-music.ogg'); // this.load.image('cat', 'assets/sprite/cat.png');
     }
   }, {
     key: "create",
     value: function create() {
       var _this = this;
 
-      this.add.image(this.game.renderer.width / 2, this.game.renderer.height * 0.3, _CST.CST.IMAGE.LOGO).setDepth(1);
-      this.add.image(0, 0, _CST.CST.IMAGE.TITLE).setOrigin(0).setDepth(0);
-      var playButton = this.add.image(this.game.renderer.width / 2, this.game.renderer.height / 2, _CST.CST.IMAGE.PLAY).setDepth(1);
-      var optionsButton = this.add.image(this.game.renderer.width / 2, this.game.renderer.height / 2 + 80, _CST.CST.IMAGE.OPTIONS).setDepth(1); //create sprites (if using pixel art, remove sharpen)
+      this.add.image(this.game.renderer.width / 2, this.game.renderer.height * 0.3, _CST.CST.IMAGE.LOGO).setScale(1.1).setDepth(1);
+      this.add.image(0, 0, _CST.CST.IMAGE.TITLE).setOrigin(0).setScale(.4).setDepth(0);
+      var playButton = this.add.image(this.game.renderer.width / 2, this.game.renderer.height / 2 + 66, _CST.CST.IMAGE.PLAY).setDepth(1);
+      var optionsButton = this.add.image(this.game.renderer.width / 2, this.game.renderer.height / 2 + 115, _CST.CST.IMAGE.OPTIONS).setDepth(1); //create sprites (if using pixel art, remove sharpen)
 
       var hoverSprite = this.add.sprite(100, 100, _CST.CST.SPRITE.MENUICON);
       hoverSprite.setScale(1.5);
@@ -390,6 +390,18 @@ function (_Phaser$Scene) {
       //     frames: [0, 1, 2, 3]
       //   })
       // });
+      //tweens
+      //   var image = this.add.image(-50, 385, 'cat');
+      //   this.tweens.add({
+      //     targets: image,
+      //     x: 850,
+      //     duration: 15500,
+      //     ease: function (t) {
+      //         return Math.pow(Math.sin(t * 3), 3);
+      //     },
+      //     delay: 1000,
+      //     repeat: -1
+      // });
       //make image buttons interactive
 
       /*    
@@ -404,7 +416,7 @@ function (_Phaser$Scene) {
       playButton.on("pointerover", function () {
         hoverSprite.setVisible(true); //hoverSprite.play("walk");
 
-        hoverSprite.x = playButton.x - playButton.width + 50;
+        hoverSprite.x = playButton.x - playButton.width + 30;
         hoverSprite.y = playButton.y;
       });
       playButton.on("pointerout", function () {
@@ -812,7 +824,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63936" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "35532" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

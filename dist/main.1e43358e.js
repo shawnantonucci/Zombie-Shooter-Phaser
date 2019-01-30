@@ -116,6 +116,7 @@ var CST = {
     LOAD: "LOAD",
     MENU: "MENU",
     PLAY: "PLAY",
+    LEVEL01: "LEVEL01",
     COMINGSOON: "COMINGSOON"
   },
   IMAGE: {
@@ -423,7 +424,7 @@ function (_Phaser$Scene) {
         hoverSprite.setVisible(false);
       });
       playButton.on("pointerup", function () {
-        _this.scene.start(_CST.CST.SCENES.COMINGSOON);
+        _this.scene.start(_CST.CST.SCENES.LEVEL01);
       });
       optionsButton.setInteractive();
       optionsButton.on("pointerover", function () {
@@ -609,7 +610,7 @@ function (_Phaser$Scene) {
       this.assassins = this.physics.add.group({
         immovable: true
       });
-      this.assassins.add(this.hooded); //this.physics.add.existing() manual add 
+      this.assassins.add(this.hooded); //this.physics.add.existing() manual add
 
       window.hooded = this.hooded;
       window.anna = this.anna; //set smaller hitbox
@@ -768,6 +769,47 @@ function (_Phaser$Scene) {
 }(Phaser.Scene);
 
 exports.ComingSoon = ComingSoon;
+},{"../CST":"src/CST.js"}],"src/scenes/Level01.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Level01 = void 0;
+
+var _CST = require("../CST");
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var Level01 =
+/*#__PURE__*/
+function (_Phaser$Scene) {
+  _inherits(Level01, _Phaser$Scene);
+
+  function Level01() {
+    _classCallCheck(this, Level01);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Level01).call(this, {
+      key: _CST.CST.SCENES.LEVEL01
+    }));
+  }
+
+  return Level01;
+}(Phaser.Scene);
+
+exports.Level01 = Level01;
 },{"../CST":"src/CST.js"}],"src/main.js":[function(require,module,exports) {
 "use strict";
 
@@ -779,25 +821,39 @@ var _PlayScene = require("./scenes/PlayScene");
 
 var _ComingSoon = require("./scenes/ComingSoon");
 
+var _Level = require("./scenes/Level01");
+
 /** @type {import("../typings/phaser")} */
 var config = {
   type: Phaser.Auto,
   width: 800,
   height: 600,
-  scene: [_LoadScene.LoadScene, _MenuScene.MenuScene, _PlayScene.PlayScene, _ComingSoon.ComingSoon],
+  scene: [_LoadScene.LoadScene, _MenuScene.MenuScene, _PlayScene.PlayScene, _ComingSoon.ComingSoon, _Level.Level01],
+  extend: {
+    player: null,
+    healthpoints: null,
+    reticle: null,
+    moveKeys: null,
+    playerBullets: null,
+    enemyBullets: null,
+    time: 0
+  },
   render: {
     pixelArt: true
   },
   physics: {
     default: "arcade",
     arcade: {
+      gravity: {
+        y: 0
+      },
       debug: false
     }
   },
   parent: 'phaser-app'
 };
 var game = new Phaser.Game(config);
-},{"./scenes/LoadScene":"src/scenes/LoadScene.js","./scenes/MenuScene":"src/scenes/MenuScene.js","./scenes/PlayScene":"src/scenes/PlayScene.js","./scenes/ComingSoon":"src/scenes/ComingSoon.js"}],"C:/Users/shawn/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./scenes/LoadScene":"src/scenes/LoadScene.js","./scenes/MenuScene":"src/scenes/MenuScene.js","./scenes/PlayScene":"src/scenes/PlayScene.js","./scenes/ComingSoon":"src/scenes/ComingSoon.js","./scenes/Level01":"src/scenes/Level01.js"}],"C:/Users/shawn/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;

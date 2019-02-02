@@ -3,17 +3,14 @@ import { CharacterSprite } from "../CharacterSprite";
 import { Sprite } from "../Sprite";
 
 export class PlayScene extends Phaser.Scene {
-  // anna!: Phaser.Physics.Arcade.Sprite;
-  // hooded!: Phaser.Physics.Arcade.Sprite;
-  // keyboard!: { [index: string]: Phaser.Input.Keyboard.Key };
-  // assassins!: Phaser.Physics.Arcade.Group;
-  // fireAttacks!: Phaser.Physics.Arcade.Group;
   constructor() {
     super({ key: CST.SCENES.PLAY });
 
   }
 
   preload() {
+
+    //anna character animations
     this.anims.create({
       key: "left",
       frameRate: 10,
@@ -47,6 +44,8 @@ export class PlayScene extends Phaser.Scene {
       })
     });
 
+
+    //effect animations
     this.anims.create({
       key: "blaze",
       duration: 50,
@@ -58,6 +57,8 @@ export class PlayScene extends Phaser.Scene {
       showOnStart: true,
       hideOnComplete: true
     });
+
+    //enemy sprite from atlas
     this.textures.addSpriteSheetFromAtlas("hooded", {
       frameHeight: 64,
       frameWidth: 64,

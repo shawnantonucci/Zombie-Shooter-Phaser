@@ -1,0 +1,70 @@
+{
+"frames": {
+	"HC_Humans1A_55.png": {
+		"frame": {"x":15, "y":0, "w":14, "h":26},
+		"spriteSourceSize": {"x":0,"y":0,"w":14,"h":26},
+		"sourceSize": {"w":14,"h":26}
+	},
+	"HC_Humans1A_56.png": {
+		"frame": {"x":43, "y":0, "w":13, "h":27},
+		"spriteSourceSize": {"x":0,"y":0,"w":13,"h":27},
+		"sourceSize": {"w":13,"h":27}
+	},
+	"HC_Humans1A_57.png": {
+		"frame": {"x":0, "y":27, "w":14, "h":26},
+		"spriteSourceSize": {"x":0,"y":0,"w":14,"h":26},
+		"sourceSize": {"w":14,"h":26}
+	},
+	"HC_Humans1A_67.png": {
+		"frame": {"x":0, "y":0, "w":14, "h":26},
+		"spriteSourceSize": {"x":0,"y":0,"w":14,"h":26},
+		"sourceSize": {"w":14,"h":26}
+	},
+	"HC_Humans1A_68.png": {
+		"frame": {"x":15, "y":27, "w":13, "h":27},
+		"spriteSourceSize": {"x":0,"y":0,"w":13,"h":27},
+		"sourceSize": {"w":13,"h":27}
+	},
+	"HC_Humans1A_69.png": {
+		"frame": {"x":15, "y":55, "w":13, "h":26},
+		"spriteSourceSize": {"x":0,"y":0,"w":13,"h":26},
+		"sourceSize": {"w":13,"h":26}
+	},
+	"HC_Humans1A_79.png": {
+		"frame": {"x":0, "y":54, "w":14, "h":26},
+		"spriteSourceSize": {"x":0,"y":0,"w":14,"h":26},
+		"sourceSize": {"w":14,"h":26}
+	},
+	"HC_Humans1A_80.png": {
+		"frame": {"x":29, "y":27, "w":13, "h":27},
+		"spriteSourceSize": {"x":0,"y":0,"w":13,"h":27},
+		"sourceSize": {"w":13,"h":27}
+	},
+	"HC_Humans1A_81.png": {
+		"frame": {"x":43, "y":55, "w":13, "h":26},
+		"spriteSourceSize": {"x":0,"y":0,"w":13,"h":26},
+		"sourceSize": {"w":13,"h":26}
+	},
+	"HC_Humans1A_91.png": {
+		"frame": {"x":29, "y":55, "w":13, "h":26},
+		"spriteSourceSize": {"x":0,"y":0,"w":13,"h":26},
+		"sourceSize": {"w":13,"h":26}
+	},
+	"HC_Humans1A_92.png": {
+		"frame": {"x":57, "y":0, "w":13, "h":27},
+		"spriteSourceSize": {"x":0,"y":0,"w":13,"h":27},
+		"sourceSize": {"w":13,"h":27}
+	},
+	"HC_Humans1A_93.png": {
+		"frame": {"x":43, "y":28, "w":13, "h":26},
+		"spriteSourceSize": {"x":0,"y":0,"w":13,"h":26},
+		"sourceSize": {"w":13,"h":26}
+	}
+
+},
+"meta": {
+	"image": "sprites.png",
+	"size": {"w": 71, "h": 82},
+	"scale": "1"
+}
+}

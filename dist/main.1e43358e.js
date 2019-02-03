@@ -816,7 +816,7 @@ function (_Phaser$Scene) {
     value: function preload() {
       this.load.atlas('player', 'assets/atlas/player.png', 'assets/atlas/player.json'); //enemy sprite from atlas
 
-      this.load.atlas('zombie', 'assets/atlas/zombies01.png', 'assets/atlas/zombies01.json');
+      this.load.atlas('zombie', 'assets/atlas/zombie01.png', 'assets/atlas/zombie01.json');
     }
   }, {
     key: "create",
@@ -827,7 +827,7 @@ function (_Phaser$Scene) {
       this.physics.world.setBounds(0, 0, 800, 600); // Create player sprite
 
       this.player = this.physics.add.sprite(100, 450, "player", 'HC_Humans1A_56.png').setScale(2);
-      this.zombie = this.physics.add.sprite(400, 200, "zombie", 'HC_Zombies2D_05.png').setScale(2);
+      this.zombie = this.physics.add.sprite(400, 200, "zombie", 'zombies_down_01.png').setScale(2);
       this.horde = this.physics.add.group({
         immovable: true
       });
@@ -864,7 +864,7 @@ function (_Phaser$Scene) {
 
         for (var i = 0; i < 2; i++) {
           //spawn 2
-          _this.horde.add(_this.physics.add.sprite(x + 100, y + 100, "zombie", 'HC_Zombies2D_05.png').setScale(2).setImmovable(true).setSize(20, 34).setOffset(-3, -3).setCollideWorldBounds(true));
+          _this.horde.add(_this.physics.add.sprite(x + 100, y + 100, "zombie", 'zombies_down_01.png').setScale(2).setImmovable(true).setSize(20, 34).setOffset(-3, -3).setCollideWorldBounds(true));
         }
       }); // this.physics.world.addCollider(
       //   this.fireAttacks,
@@ -943,10 +943,10 @@ function (_Phaser$Scene) {
         key: "zombiedown",
         frameRate: 5,
         frames: this.anims.generateFrameNames("zombie", {
-          prefix: 'HC_Zombies2D__',
+          prefix: 'zombies_down_',
           suffix: '.png',
-          start: 4,
-          end: 6,
+          start: 1,
+          end: 3,
           zeroPad: 2
         })
       });
@@ -954,10 +954,10 @@ function (_Phaser$Scene) {
         key: "zombieup",
         frameRate: 5,
         frames: this.anims.generateFrameNames("zombie", {
-          prefix: 'HC_Zombies2D_',
+          prefix: 'zombies_up_',
           suffix: '.png',
-          start: 16,
-          end: 18,
+          start: 1,
+          end: 3,
           zeroPad: 2
         })
       });
@@ -965,10 +965,10 @@ function (_Phaser$Scene) {
         key: "zombieleft",
         frameRate: 5,
         frames: this.anims.generateFrameNames("zombie", {
-          prefix: 'HC_Zombies2D_',
+          prefix: 'zombies_left_',
           suffix: '.png',
-          start: 28,
-          end: 30,
+          start: 1,
+          end: 3,
           zeroPad: 2
         })
       });
@@ -976,10 +976,10 @@ function (_Phaser$Scene) {
         key: "zombieright",
         frameRate: 5,
         frames: this.anims.generateFrameNames("zombie", {
-          prefix: 'HC_Zombies2D_',
+          prefix: 'zombies_right_',
           suffix: '.png',
-          start: 52,
-          end: 58,
+          start: 1,
+          end: 3,
           zeroPad: 2
         })
       });

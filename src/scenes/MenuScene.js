@@ -11,7 +11,6 @@ export class MenuScene extends Phaser.Scene {
 
   preload() {
     this.load.audio('music', 'assets/audio/zombie-main-music.ogg');
-    // this.load.image('cat', 'assets/sprite/cat.png');
   }
 
   create() {

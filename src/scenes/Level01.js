@@ -35,6 +35,7 @@ export class Level01 extends Phaser.Scene {
     this.zombie.body.velocity.x = 50;
     this.zombie.body.velocity.y = 50;
     
+    this.physics.add.collider(this.player, this.zombie, hitZombie, null, this);
 
     this.player.body.drag.setTo(this.DRAG, 0);
     this.zombie.body.drag.setTo(this.DRAG, 0);
@@ -213,19 +214,19 @@ export class Level01 extends Phaser.Scene {
 
     if (this.player.active === true) {
       if (this.keyboard.D.isDown === true) {
-        this.player.setVelocityX(256);
+        this.player.setVelocityX(120);
       }
 
       if (this.keyboard.W.isDown === true) {
-        this.player.setVelocityY(-256);
+        this.player.setVelocityY(-120);
       }
 
       if (this.keyboard.S.isDown === true) {
-        this.player.setVelocityY(256);
+        this.player.setVelocityY(120);
       }
 
       if (this.keyboard.A.isDown === true) {
-        this.player.setVelocityX(-256);
+        this.player.setVelocityX(-120);
       }
       if (this.keyboard.A.isUp && this.keyboard.D.isUp) {
         //not moving on X axis
@@ -273,4 +274,17 @@ export class Level01 extends Phaser.Scene {
     }
 
   }
+}
+
+
+function hitZombie (player, zombie)
+{
+    this.physics.pause();
+
+    player.setTint(0xff0000);
+
+    // player.anims.play('turn');
+
+    this.scene.start(CST.SCENES.GAMEOVER);
+    // gameOver = true;
 }

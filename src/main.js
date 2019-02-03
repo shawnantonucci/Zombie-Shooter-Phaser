@@ -5,12 +5,13 @@ import { MenuScene } from "./scenes/MenuScene";
 import { PlayScene } from "./scenes/PlayScene";
 import { ComingSoon } from "./scenes/ComingSoon";
 import { Level01 } from "./scenes/Level01";
+import { GameOver } from "./scenes/GameOver";
 
 let config = {
   type: Phaser.Auto,
   width: 800,
   height: 600,
-  scene: [LoadScene, MenuScene, PlayScene, ComingSoon, Level01],
+  scene: [LoadScene, MenuScene, PlayScene, ComingSoon, Level01, GameOver],
   extend: {
     player: null,
     healthpoints: null,

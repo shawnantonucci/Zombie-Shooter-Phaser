@@ -117,7 +117,8 @@ var CST = {
     MENU: "MENU",
     PLAY: "PLAY",
     LEVEL01: "LEVEL01",
-    COMINGSOON: "COMINGSOON"
+    COMINGSOON: "COMINGSOON",
+    GAMEOVER: "GAMEOVER"
   },
   IMAGE: {
     LOGO: "zombie-logo.png",
@@ -842,6 +843,7 @@ function (_Phaser$Scene) {
       this.zombie.setCollideWorldBounds(true);
       this.zombie.body.velocity.x = 50;
       this.zombie.body.velocity.y = 50;
+      this.physics.add.collider(this.player, this.zombie, hitZombie, null, this);
       this.player.body.drag.setTo(this.DRAG, 0);
       this.zombie.body.drag.setTo(this.DRAG, 0);
       this.keyboard = this.input.keyboard.addKeys("W, A, S, D");
@@ -997,19 +999,19 @@ function (_Phaser$Scene) {
 
       if (this.player.active === true) {
         if (this.keyboard.D.isDown === true) {
-          this.player.setVelocityX(256);
+          this.player.setVelocityX(120);
         }
 
         if (this.keyboard.W.isDown === true) {
-          this.player.setVelocityY(-256);
+          this.player.setVelocityY(-120);
         }
 
         if (this.keyboard.S.isDown === true) {
-          this.player.setVelocityY(256);
+          this.player.setVelocityY(120);
         }
 
         if (this.keyboard.A.isDown === true) {
-          this.player.setVelocityX(-256);
+          this.player.setVelocityX(-120);
         }
 
         if (this.keyboard.A.isUp && this.keyboard.D.isUp) {
@@ -1061,6 +1063,77 @@ function (_Phaser$Scene) {
 }(Phaser.Scene);
 
 exports.Level01 = Level01;
+
+function hitZombie(player, zombie) {
+  this.physics.pause();
+  player.setTint(0xff0000); // player.anims.play('turn');
+
+  this.scene.start(_CST.CST.SCENES.GAMEOVER); // gameOver = true;
+}
+},{"../CST":"src/CST.js"}],"src/scenes/GameOver.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.GameOver = void 0;
+
+var _CST = require("../CST");
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var GameOver =
+/*#__PURE__*/
+function (_Phaser$Scene) {
+  _inherits(GameOver, _Phaser$Scene);
+
+  function GameOver() {
+    _classCallCheck(this, GameOver);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(GameOver).call(this, {
+      key: _CST.CST.SCENES.GAMEOVER
+    }));
+  }
+
+  _createClass(GameOver, [{
+    key: "create",
+    value: function create() {
+      var _this = this;
+
+      this.add.text(225, 150, "Game Over").setFontFamily("Arial").setFontSize(64).setColor("red").setOrigin(0);
+      var menu = this.add.text(330, 250, "Main Menu").setFontFamily("Arial").setFontSize(24).setColor("red").setOrigin(0);
+      var playAgain = this.add.text(330, 280, "Play Again").setFontFamily("Arial").setFontSize(24).setColor("Blue").setOrigin(0);
+      menu.setInteractive();
+      playAgain.setInteractive();
+      menu.on("pointerup", function () {
+        _this.scene.start(_CST.CST.SCENES.MENU);
+      });
+      playAgain.on("pointerup", function () {
+        _this.scene.start(_CST.CST.SCENES.LEVEL01);
+      });
+    }
+  }]);
+
+  return GameOver;
+}(Phaser.Scene);
+
+exports.GameOver = GameOver;
 },{"../CST":"src/CST.js"}],"src/main.js":[function(require,module,exports) {
 "use strict";
 
@@ -1074,12 +1147,14 @@ var _ComingSoon = require("./scenes/ComingSoon");
 
 var _Level = require("./scenes/Level01");
 
+var _GameOver = require("./scenes/GameOver");
+
 /** @type {import("../typings/phaser")} */
 var config = {
   type: Phaser.Auto,
   width: 800,
   height: 600,
-  scene: [_LoadScene.LoadScene, _MenuScene.MenuScene, _PlayScene.PlayScene, _ComingSoon.ComingSoon, _Level.Level01],
+  scene: [_LoadScene.LoadScene, _MenuScene.MenuScene, _PlayScene.PlayScene, _ComingSoon.ComingSoon, _Level.Level01, _GameOver.GameOver],
   extend: {
     player: null,
     healthpoints: null,
@@ -1104,7 +1179,7 @@ var config = {
   parent: 'phaser-game'
 };
 var game = new Phaser.Game(config);
-},{"./scenes/LoadScene":"src/scenes/LoadScene.js","./scenes/MenuScene":"src/scenes/MenuScene.js","./scenes/PlayScene":"src/scenes/PlayScene.js","./scenes/ComingSoon":"src/scenes/ComingSoon.js","./scenes/Level01":"src/scenes/Level01.js"}],"C:/Users/shawn/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./scenes/LoadScene":"src/scenes/LoadScene.js","./scenes/MenuScene":"src/scenes/MenuScene.js","./scenes/PlayScene":"src/scenes/PlayScene.js","./scenes/ComingSoon":"src/scenes/ComingSoon.js","./scenes/Level01":"src/scenes/Level01.js","./scenes/GameOver":"src/scenes/GameOver.js"}],"C:/Users/shawn/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;

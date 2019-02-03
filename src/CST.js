@@ -4,7 +4,8 @@ export const CST = {
         MENU: "MENU",
         PLAY: "PLAY",
         LEVEL01: "LEVEL01",
-        COMINGSOON: "COMINGSOON"
+        COMINGSOON: "COMINGSOON",
+        GAMEOVER: "GAMEOVER"
     },
     IMAGE: {
         LOGO: "zombie-logo.png",

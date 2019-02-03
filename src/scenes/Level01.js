@@ -14,7 +14,8 @@ export class Level01 extends Phaser.Scene {
   create() {
     // Create world bounds
     this.physics.world.setBounds(0, 0, 800, 600);
-
+    this.DRAG = 600;
+    
     // Create player sprite
     this.player = this.physics.add.sprite(100, 450, "player", 'HC_Humans1A_56.png').setScale(2);
     this.zombie = this.physics.add.sprite(400, 200, "zombie", 'zombies_down_01.png').setScale(2);
@@ -31,9 +32,12 @@ export class Level01 extends Phaser.Scene {
     
     this.zombie.setSize(20, 34).setOffset(-3, -3);
     this.zombie.setCollideWorldBounds(true);
-    this.zombie.body.velocity.x = 10;
-    this.zombie.body.velocity.y = 10;
+    this.zombie.body.velocity.x = 50;
+    this.zombie.body.velocity.y = 50;
     
+
+    this.player.body.drag.setTo(this.DRAG, 0);
+    this.zombie.body.drag.setTo(this.DRAG, 0);
 
     this.keyboard = this.input.keyboard.addKeys("W, A, S, D");
 
@@ -200,7 +204,7 @@ export class Level01 extends Phaser.Scene {
     //delta 16.666 @ 60fps
 
     for (let i = 0; i < this.horde.getChildren().length; i++) {
-      this.physics.accelerateToObject(
+      this.physics.moveToObject(
         this.horde.getChildren()[i],
         this.player
       );

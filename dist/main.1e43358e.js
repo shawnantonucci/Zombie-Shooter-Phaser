@@ -824,7 +824,8 @@ function (_Phaser$Scene) {
       var _this = this;
 
       // Create world bounds
-      this.physics.world.setBounds(0, 0, 800, 600); // Create player sprite
+      this.physics.world.setBounds(0, 0, 800, 600);
+      this.DRAG = 600; // Create player sprite
 
       this.player = this.physics.add.sprite(100, 450, "player", 'HC_Humans1A_56.png').setScale(2);
       this.zombie = this.physics.add.sprite(400, 200, "zombie", 'zombies_down_01.png').setScale(2);
@@ -839,8 +840,10 @@ function (_Phaser$Scene) {
       this.player.setCollideWorldBounds(true);
       this.zombie.setSize(20, 34).setOffset(-3, -3);
       this.zombie.setCollideWorldBounds(true);
-      this.zombie.body.velocity.x = 10;
-      this.zombie.body.velocity.y = 10;
+      this.zombie.body.velocity.x = 50;
+      this.zombie.body.velocity.y = 50;
+      this.player.body.drag.setTo(this.DRAG, 0);
+      this.zombie.body.drag.setTo(this.DRAG, 0);
       this.keyboard = this.input.keyboard.addKeys("W, A, S, D");
       this.physics.world.addCollider(this.player, this.horde, function (player, zombie) {
         player.hp--;
@@ -989,7 +992,7 @@ function (_Phaser$Scene) {
     value: function update(time, delta) {
       //delta 16.666 @ 60fps
       for (var i = 0; i < this.horde.getChildren().length; i++) {
-        this.physics.accelerateToObject(this.horde.getChildren()[i], this.player);
+        this.physics.moveToObject(this.horde.getChildren()[i], this.player);
       }
 
       if (this.player.active === true) {

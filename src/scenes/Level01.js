@@ -45,7 +45,27 @@ export class Level01 extends Phaser.Scene {
           player.destroy();
         }
         zombie.destroy();
-      }
+
+
+        let x = 0;
+        let y = 0;
+        switch (Phaser.Math.Between(0, 1)) {
+          case 0:
+            x = Phaser.Math.Between(0, this.game.renderer.width);
+            break;
+          case 1:
+            y = Phaser.Math.Between(0, this.game.renderer.height);
+        }
+        for (let i = 0; i < 2; i++) {
+          //spawn 2
+          this.horde.add(
+            this.physics.add
+              .sprite(x, y, "zombie", 'HC_Zombies2D_05.png')
+              .setScale(2)
+              .setImmovable(true)
+          );
+        }
+        }
     );
 
     // this.physics.world.addCollider(
@@ -222,20 +242,20 @@ export class Level01 extends Phaser.Scene {
         this.player.play("down", true);
       }
 
-      //zombie
-      if (this.zombie.body.velocity.x > 0) {
-        //moving right
-        this.zombie.play("zombieright", true);
-      } else if (this.zombie.body.velocity.x < 0) {
-        //moving left
-        this.zombie.play("zombieleft", true);
-      } else if (this.zombie.body.velocity.y < 0) {
-        //moving up
-        this.zombie.play("zombieup", true);
-      } else if (this.zombie.body.velocity.y > 0) {
-        //moving down
-        this.zombie.play("zombiedown", true);
-      }
+      // //zombie
+      // if (this.zombie.body.velocity.x > 0) {
+      //   //moving right
+      //   this.zombie.play("zombieright", true);
+      // } else if (this.zombie.body.velocity.x < 0) {
+      //   //moving left
+      //   this.zombie.play("zombieleft", true);
+      // } else if (this.zombie.body.velocity.y < 0) {
+      //   //moving up
+      //   this.zombie.play("zombieup", true);
+      // } else if (this.zombie.body.velocity.y > 0) {
+      //   //moving down
+      //   this.zombie.play("zombiedown", true);
+      // }
 
 
     }

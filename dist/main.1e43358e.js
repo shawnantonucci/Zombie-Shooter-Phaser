@@ -821,6 +821,8 @@ function (_Phaser$Scene) {
   }, {
     key: "create",
     value: function create() {
+      var _this = this;
+
       // Create world bounds
       this.physics.world.setBounds(0, 0, 800, 600); // Create player sprite
 
@@ -848,6 +850,22 @@ function (_Phaser$Scene) {
         }
 
         zombie.destroy();
+        var x = 0;
+        var y = 0;
+
+        switch (Phaser.Math.Between(0, 1)) {
+          case 0:
+            x = Phaser.Math.Between(0, _this.game.renderer.width);
+            break;
+
+          case 1:
+            y = Phaser.Math.Between(0, _this.game.renderer.height);
+        }
+
+        for (var i = 0; i < 2; i++) {
+          //spawn 2
+          _this.horde.add(_this.physics.add.sprite(x, y, "zombie", 'HC_Zombies2D_05.png').setScale(2).setImmovable(true));
+        }
       }); // this.physics.world.addCollider(
       //   this.fireAttacks,
       //   this.assassins,
@@ -1014,22 +1032,21 @@ function (_Phaser$Scene) {
         } else if (this.player.body.velocity.y > 0) {
           //moving down
           this.player.play("down", true);
-        } //zombie
+        } // //zombie
+        // if (this.zombie.body.velocity.x > 0) {
+        //   //moving right
+        //   this.zombie.play("zombieright", true);
+        // } else if (this.zombie.body.velocity.x < 0) {
+        //   //moving left
+        //   this.zombie.play("zombieleft", true);
+        // } else if (this.zombie.body.velocity.y < 0) {
+        //   //moving up
+        //   this.zombie.play("zombieup", true);
+        // } else if (this.zombie.body.velocity.y > 0) {
+        //   //moving down
+        //   this.zombie.play("zombiedown", true);
+        // }
 
-
-        if (this.zombie.body.velocity.x > 0) {
-          //moving right
-          this.zombie.play("zombieright", true);
-        } else if (this.zombie.body.velocity.x < 0) {
-          //moving left
-          this.zombie.play("zombieleft", true);
-        } else if (this.zombie.body.velocity.y < 0) {
-          //moving up
-          this.zombie.play("zombieup", true);
-        } else if (this.zombie.body.velocity.y > 0) {
-          //moving down
-          this.zombie.play("zombiedown", true);
-        }
       }
     }
   }]);

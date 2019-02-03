@@ -17,13 +17,13 @@ export class Level01 extends Phaser.Scene {
 
     // Create player sprite
     this.player = this.physics.add.sprite(100, 450, "player", 'HC_Humans1A_56.png').setScale(2);
-    this.zombie = this.physics.add.sprite(400, 200, "zombie", 'HC_Zombies2D_05.png').setScale(2).setImmovable(true);
+    this.zombie = this.physics.add.sprite(400, 200, "zombie", 'HC_Zombies2D_05.png').setScale(2);
 
     this.horde = this.physics.add.group({ immovable: true });
     this.horde.add(this.zombie);
 
     window.player = this.player;
-    window.zombie = this.zombie;
+    // window.zombie = this.zombie;
 
     //set smaller hitbox
     this.player.setSize(20, 34).setOffset(-3, -3);
@@ -31,8 +31,8 @@ export class Level01 extends Phaser.Scene {
     
     this.zombie.setSize(20, 34).setOffset(-3, -3);
     this.zombie.setCollideWorldBounds(true);
-    this.zombie.body.velocity.x = 100;
-    this.zombie.body.velocity.y = 100;
+    this.zombie.body.velocity.x = 10;
+    this.zombie.body.velocity.y = 10;
 
     this.keyboard = this.input.keyboard.addKeys("W, A, S, D");
 
@@ -49,6 +49,7 @@ export class Level01 extends Phaser.Scene {
 
         let x = 0;
         let y = 0;
+
         switch (Phaser.Math.Between(0, 1)) {
           case 0:
             x = Phaser.Math.Between(0, this.game.renderer.width);
@@ -56,15 +57,17 @@ export class Level01 extends Phaser.Scene {
           case 1:
             y = Phaser.Math.Between(0, this.game.renderer.height);
         }
-        for (let i = 0; i < 2; i++) {
-          //spawn 2
-          this.horde.add(
-            this.physics.add
-              .sprite(x, y, "zombie", 'HC_Zombies2D_05.png')
-              .setScale(2)
-              .setImmovable(true)
-          );
-        }
+          for (let i = 0; i < 2; i++) {
+            //spawn 2
+            this.horde.add(
+              this.physics.add
+                .sprite(x + 100, y + 100, "zombie", 'HC_Zombies2D_05.png')
+                .setScale(2)
+                .setImmovable(true)
+                .setSize(20, 34).setOffset(-3, -3)
+                .setCollideWorldBounds(true)
+            );
+          }
         }
     );
 
@@ -242,22 +245,25 @@ export class Level01 extends Phaser.Scene {
         this.player.play("down", true);
       }
 
-      // //zombie
-      // if (this.zombie.body.velocity.x > 0) {
-      //   //moving right
-      //   this.zombie.play("zombieright", true);
-      // } else if (this.zombie.body.velocity.x < 0) {
-      //   //moving left
-      //   this.zombie.play("zombieleft", true);
-      // } else if (this.zombie.body.velocity.y < 0) {
-      //   //moving up
-      //   this.zombie.play("zombieup", true);
-      // } else if (this.zombie.body.velocity.y > 0) {
-      //   //moving down
-      //   this.zombie.play("zombiedown", true);
-      // }
-
 
     }
+
+    if (this.zombie.active === true) {
+      //zombie
+      if (this.zombie.body.velocity.x > 0) {
+        //moving right
+        this.zombie.play("zombieright", true);
+      } else if (this.zombie.body.velocity.x < 0) {
+        //moving left
+        this.zombie.play("zombieleft", true);
+      } else if (this.zombie.body.velocity.y < 0) {
+        //moving up
+        this.zombie.play("zombieup", true);
+      } else if (this.zombie.body.velocity.y > 0) {
+        //moving down
+        this.zombie.play("zombiedown", true);
+      }
+    }
+
   }
 }

@@ -827,20 +827,20 @@ function (_Phaser$Scene) {
       this.physics.world.setBounds(0, 0, 800, 600); // Create player sprite
 
       this.player = this.physics.add.sprite(100, 450, "player", 'HC_Humans1A_56.png').setScale(2);
-      this.zombie = this.physics.add.sprite(400, 200, "zombie", 'HC_Zombies2D_05.png').setScale(2).setImmovable(true);
+      this.zombie = this.physics.add.sprite(400, 200, "zombie", 'HC_Zombies2D_05.png').setScale(2);
       this.horde = this.physics.add.group({
         immovable: true
       });
       this.horde.add(this.zombie);
-      window.player = this.player;
-      window.zombie = this.zombie; //set smaller hitbox
+      window.player = this.player; // window.zombie = this.zombie;
+      //set smaller hitbox
 
       this.player.setSize(20, 34).setOffset(-3, -3);
       this.player.setCollideWorldBounds(true);
       this.zombie.setSize(20, 34).setOffset(-3, -3);
       this.zombie.setCollideWorldBounds(true);
-      this.zombie.body.velocity.x = 100;
-      this.zombie.body.velocity.y = 100;
+      this.zombie.body.velocity.x = 10;
+      this.zombie.body.velocity.y = 10;
       this.keyboard = this.input.keyboard.addKeys("W, A, S, D");
       this.physics.world.addCollider(this.player, this.horde, function (player, zombie) {
         player.hp--;
@@ -864,7 +864,7 @@ function (_Phaser$Scene) {
 
         for (var i = 0; i < 2; i++) {
           //spawn 2
-          _this.horde.add(_this.physics.add.sprite(x, y, "zombie", 'HC_Zombies2D_05.png').setScale(2).setImmovable(true));
+          _this.horde.add(_this.physics.add.sprite(x + 100, y + 100, "zombie", 'HC_Zombies2D_05.png').setScale(2).setImmovable(true).setSize(20, 34).setOffset(-3, -3).setCollideWorldBounds(true));
         }
       }); // this.physics.world.addCollider(
       //   this.fireAttacks,
@@ -1032,21 +1032,24 @@ function (_Phaser$Scene) {
         } else if (this.player.body.velocity.y > 0) {
           //moving down
           this.player.play("down", true);
-        } // //zombie
-        // if (this.zombie.body.velocity.x > 0) {
-        //   //moving right
-        //   this.zombie.play("zombieright", true);
-        // } else if (this.zombie.body.velocity.x < 0) {
-        //   //moving left
-        //   this.zombie.play("zombieleft", true);
-        // } else if (this.zombie.body.velocity.y < 0) {
-        //   //moving up
-        //   this.zombie.play("zombieup", true);
-        // } else if (this.zombie.body.velocity.y > 0) {
-        //   //moving down
-        //   this.zombie.play("zombiedown", true);
-        // }
+        }
+      }
 
+      if (this.zombie.active === true) {
+        //zombie
+        if (this.zombie.body.velocity.x > 0) {
+          //moving right
+          this.zombie.play("zombieright", true);
+        } else if (this.zombie.body.velocity.x < 0) {
+          //moving left
+          this.zombie.play("zombieleft", true);
+        } else if (this.zombie.body.velocity.y < 0) {
+          //moving up
+          this.zombie.play("zombieup", true);
+        } else if (this.zombie.body.velocity.y > 0) {
+          //moving down
+          this.zombie.play("zombiedown", true);
+        }
       }
     }
   }]);

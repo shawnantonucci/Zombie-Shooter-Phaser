@@ -132,7 +132,8 @@ var CST = {
   SPRITE: {
     CAT: "cat.png",
     MENUICON: "greenBio.png",
-    PLAYER: 'player.png'
+    PLAYER: 'player.png',
+    ZOMBIE: 'zombies01.png'
   }
 };
 exports.CST = CST;
@@ -779,10 +780,6 @@ exports.Level01 = void 0;
 
 var _CST = require("../CST");
 
-var _CharacterSprite = require("../CharacterSprite");
-
-var _Sprite = require("../Sprite");
-
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -817,7 +814,9 @@ function (_Phaser$Scene) {
   _createClass(Level01, [{
     key: "preload",
     value: function preload() {
-      this.load.atlas('player', 'assets/atlas/player.png', 'assets/atlas/player.json');
+      this.load.atlas('player', 'assets/atlas/player.png', 'assets/atlas/player.json'); //enemy sprite from atlas
+
+      this.load.atlas('zombie', 'assets/atlas/zombies01.png', 'assets/atlas/zombies01.json');
     }
   }, {
     key: "create",
@@ -826,11 +825,56 @@ function (_Phaser$Scene) {
       this.physics.world.setBounds(0, 0, 800, 600); // Create player sprite
 
       this.player = this.physics.add.sprite(100, 450, "player", 'HC_Humans1A_56.png').setScale(2);
-      window.player = this.player; //set smaller hitbox
+      this.zombie = this.physics.add.sprite(400, 200, "zombie", 'HC_Zombies2D_05.png').setScale(2).setImmovable(true);
+      this.horde = this.physics.add.group({
+        immovable: true
+      });
+      this.horde.add(this.zombie);
+      window.player = this.player;
+      window.zombie = this.zombie; //set smaller hitbox
 
       this.player.setSize(20, 34).setOffset(-3, -3);
       this.player.setCollideWorldBounds(true);
-      this.keyboard = this.input.keyboard.addKeys("W, A, S, D"); //player character animations
+      this.zombie.setSize(20, 34).setOffset(-3, -3);
+      this.zombie.setCollideWorldBounds(true);
+      this.zombie.body.velocity.x = 100;
+      this.zombie.body.velocity.y = 100;
+      this.keyboard = this.input.keyboard.addKeys("W, A, S, D");
+      this.physics.world.addCollider(this.player, this.horde, function (player, zombie) {
+        player.hp--;
+
+        if (player.hp <= 0) {
+          player.destroy();
+        }
+
+        zombie.destroy();
+      }); // this.physics.world.addCollider(
+      //   this.fireAttacks,
+      //   this.assassins,
+      //   (fireAttacks, hooded) => {
+      //     fireAttacks.destroy();
+      //     hooded.destroy();
+      //     let x = 0;
+      //     let y = 0;
+      //     switch (Phaser.Math.Between(0, 1)) {
+      //       case 0:
+      //         x = Phaser.Math.Between(0, this.game.renderer.width);
+      //         break;
+      //       case 1:
+      //         y = Phaser.Math.Between(0, this.game.renderer.height);
+      //     }
+      //     for (let i = 0; i < 2; i++) {
+      //       //spawn 2
+      //       this.assassins.add(
+      //         this.physics.add
+      //           .sprite(x, y, "hooded", 26)
+      //           .setScale(2)
+      //           .setImmovable(true)
+      //       );
+      //     }
+      //   }
+      // );
+      //player character animations
 
       this.anims.create({
         key: "down",
@@ -875,12 +919,61 @@ function (_Phaser$Scene) {
           end: 81,
           zeroPad: 2
         })
+      }); //zombie character animations
+
+      this.anims.create({
+        key: "zombiedown",
+        frameRate: 5,
+        frames: this.anims.generateFrameNames("zombie", {
+          prefix: 'HC_Zombies2D__',
+          suffix: '.png',
+          start: 4,
+          end: 6,
+          zeroPad: 2
+        })
+      });
+      this.anims.create({
+        key: "zombieup",
+        frameRate: 5,
+        frames: this.anims.generateFrameNames("zombie", {
+          prefix: 'HC_Zombies2D_',
+          suffix: '.png',
+          start: 16,
+          end: 18,
+          zeroPad: 2
+        })
+      });
+      this.anims.create({
+        key: "zombieleft",
+        frameRate: 5,
+        frames: this.anims.generateFrameNames("zombie", {
+          prefix: 'HC_Zombies2D_',
+          suffix: '.png',
+          start: 28,
+          end: 30,
+          zeroPad: 2
+        })
+      });
+      this.anims.create({
+        key: "zombieright",
+        frameRate: 5,
+        frames: this.anims.generateFrameNames("zombie", {
+          prefix: 'HC_Zombies2D_',
+          suffix: '.png',
+          start: 52,
+          end: 58,
+          zeroPad: 2
+        })
       });
     }
   }, {
     key: "update",
     value: function update(time, delta) {
       //delta 16.666 @ 60fps
+      for (var i = 0; i < this.horde.getChildren().length; i++) {
+        this.physics.accelerateToObject(this.horde.getChildren()[i], this.player);
+      }
+
       if (this.player.active === true) {
         if (this.keyboard.D.isDown === true) {
           this.player.setVelocityX(256);
@@ -906,7 +999,8 @@ function (_Phaser$Scene) {
         if (this.keyboard.W.isUp && this.keyboard.S.isUp) {
           //not pressing y movement
           this.player.setVelocityY(0);
-        }
+        } //player
+
 
         if (this.player.body.velocity.x > 0) {
           //moving right
@@ -920,6 +1014,21 @@ function (_Phaser$Scene) {
         } else if (this.player.body.velocity.y > 0) {
           //moving down
           this.player.play("down", true);
+        } //zombie
+
+
+        if (this.zombie.body.velocity.x > 0) {
+          //moving right
+          this.zombie.play("zombieright", true);
+        } else if (this.zombie.body.velocity.x < 0) {
+          //moving left
+          this.zombie.play("zombieleft", true);
+        } else if (this.zombie.body.velocity.y < 0) {
+          //moving up
+          this.zombie.play("zombieup", true);
+        } else if (this.zombie.body.velocity.y > 0) {
+          //moving down
+          this.zombie.play("zombiedown", true);
         }
       }
     }
@@ -929,7 +1038,7 @@ function (_Phaser$Scene) {
 }(Phaser.Scene);
 
 exports.Level01 = Level01;
-},{"../CST":"src/CST.js","../CharacterSprite":"src/CharacterSprite.js","../Sprite":"src/Sprite.js"}],"src/main.js":[function(require,module,exports) {
+},{"../CST":"src/CST.js"}],"src/main.js":[function(require,module,exports) {
 "use strict";
 
 var _LoadScene = require("./scenes/LoadScene");

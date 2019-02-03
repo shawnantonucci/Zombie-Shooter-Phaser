@@ -1,0 +1,80 @@
+{
+"frames": {
+	"!HC_Humans2_Dead_52.png": {
+		"frame": {"x":34, "y":53, "w":15, "h":25},
+		"spriteSourceSize": {"x":0,"y":0,"w":15,"h":25},
+		"sourceSize": {"w":15,"h":25}
+	},
+	"!HC_Humans2_Dead_58.png": {
+		"frame": {"x":50, "y":53, "w":15, "h":27},
+		"spriteSourceSize": {"x":0,"y":0,"w":15,"h":27},
+		"sourceSize": {"w":15,"h":27}
+	},
+	"HC_Zombies2D_04.png": {
+		"frame": {"x":52, "y":0, "w":15, "h":25},
+		"spriteSourceSize": {"x":0,"y":0,"w":15,"h":25},
+		"sourceSize": {"w":15,"h":25}
+	},
+	"HC_Zombies2D_05.png": {
+		"frame": {"x":36, "y":0, "w":15, "h":26},
+		"spriteSourceSize": {"x":0,"y":0,"w":15,"h":26},
+		"sourceSize": {"w":15,"h":26}
+	},
+	"HC_Zombies2D_06.png": {
+		"frame": {"x":51, "y":27, "w":15, "h":25},
+		"spriteSourceSize": {"x":0,"y":0,"w":15,"h":25},
+		"sourceSize": {"w":15,"h":25}
+	},
+	"HC_Zombies2D_16.png": {
+		"frame": {"x":17, "y":52, "w":16, "h":25},
+		"spriteSourceSize": {"x":0,"y":0,"w":16,"h":25},
+		"sourceSize": {"w":16,"h":25}
+	},
+	"HC_Zombies2D_17.png": {
+		"frame": {"x":0, "y":52, "w":16, "h":26},
+		"spriteSourceSize": {"x":0,"y":0,"w":16,"h":26},
+		"sourceSize": {"w":16,"h":26}
+	},
+	"HC_Zombies2D_18.png": {
+		"frame": {"x":0, "y":0, "w":18, "h":25},
+		"spriteSourceSize": {"x":0,"y":0,"w":18,"h":25},
+		"sourceSize": {"w":18,"h":25}
+	},
+	"HC_Zombies2D_28.png": {
+		"frame": {"x":34, "y":27, "w":16, "h":25},
+		"spriteSourceSize": {"x":0,"y":0,"w":16,"h":25},
+		"sourceSize": {"w":16,"h":25}
+	},
+	"HC_Zombies2D_29.png": {
+		"frame": {"x":19, "y":0, "w":16, "h":26},
+		"spriteSourceSize": {"x":0,"y":0,"w":16,"h":26},
+		"sourceSize": {"w":16,"h":26}
+	},
+	"HC_Zombies2D_30.png": {
+		"frame": {"x":0, "y":26, "w":18, "h":25},
+		"spriteSourceSize": {"x":0,"y":0,"w":18,"h":25},
+		"sourceSize": {"w":18,"h":25}
+	},
+	"HC_Zombies2D_40.png": {
+		"frame": {"x":68, "y":0, "w":13, "h":25},
+		"spriteSourceSize": {"x":0,"y":0,"w":13,"h":25},
+		"sourceSize": {"w":13,"h":25}
+	},
+	"HC_Zombies2D_41.png": {
+		"frame": {"x":67, "y":26, "w":13, "h":26},
+		"spriteSourceSize": {"x":0,"y":0,"w":13,"h":26},
+		"sourceSize": {"w":13,"h":26}
+	},
+	"HC_Zombies2D_42.png": {
+		"frame": {"x":66, "y":53, "w":13, "h":25},
+		"spriteSourceSize": {"x":0,"y":0,"w":13,"h":25},
+		"sourceSize": {"w":13,"h":25}
+	}
+
+},
+"meta": {
+	"image": "zombies01.png",
+	"size": {"w": 82, "h": 81},
+	"scale": "1"
+}
+}

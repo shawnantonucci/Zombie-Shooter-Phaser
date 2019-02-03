@@ -19,6 +19,7 @@ export const CST = {
     SPRITE: {
         CAT: "cat.png",
         MENUICON: "greenBio.png",
-        PLAYER: 'player.png'
+        PLAYER: 'player.png',
+        ZOMBIE: 'zombies01.png'
     }
 }
